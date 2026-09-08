@@ -380,6 +380,22 @@ button { font: inherit; }
   padding: 2rem 0 4rem;
 }
 
+/* ---- Related coverage (bottom of article) ------------------------------------- */
+.article-related {
+  border-top: 1px solid var(--border);
+  max-width: 72ch;
+  padding-top: 2.5rem;
+}
+.article-related h2 { font-size: 1.1rem; margin: 0 0 1rem; }
+.post-list-related {
+  padding: 0 0 1rem;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.post-list-related .post-card { padding: 1.1rem 1.3rem; }
+.post-list-related .post-card h3 { font-size: 1.02rem; margin-bottom: 0.3rem; }
+.post-list-related .excerpt { font-size: 0.9rem; }
+
 /* ---- About page content ------------------------------------------------------ */
 .prose { max-width: 72ch; padding: 2rem 0 4rem; }
 .prose h2 { margin-top: 2em; font-size: 1.4rem; }

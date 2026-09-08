@@ -105,7 +105,8 @@
 
   function initPostLists() {
     var containers = document.querySelectorAll("[data-post-list]");
-    if (!containers.length) return;
+    var relatedContainers = document.querySelectorAll("[data-related-list]");
+    if (!containers.length && !relatedContainers.length) return;
 
     fetch("/data/posts.json", { cache: "no-store" })
       .then(function (res) { return res.ok ? res.json() : []; })
@@ -118,6 +119,18 @@
           var scoped = section === "all" ? posts : posts.filter(function (p) { return p.section === section; });
           var limitAttr = container.getAttribute("data-limit");
           if (limitAttr) scoped = scoped.slice(0, parseInt(limitAttr, 10));
+          renderPostList(container, scoped);
+        });
+
+        /* "Related coverage" widget: same-section posts first, padded out
+           with the most recent posts from other sections, excluding self. */
+        relatedContainers.forEach(function (container) {
+          var section = container.getAttribute("data-section");
+          var exclude = container.getAttribute("data-exclude");
+          var limit = parseInt(container.getAttribute("data-limit") || "3", 10);
+          var sameSection = posts.filter(function (p) { return p.section === section && p.slug !== exclude; });
+          var otherSection = posts.filter(function (p) { return p.section !== section && p.slug !== exclude; });
+          var scoped = sameSection.concat(otherSection).slice(0, limit);
           renderPostList(container, scoped);
         });
       })
