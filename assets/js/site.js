@@ -83,6 +83,7 @@
   function postCardHtml(post) {
     var sectionLabel = SECTION_LABELS[post.section] || post.section;
     var modelLabel = post.model || "AI-generated";
+    if (post.model && post.provider) modelLabel = post.model + " · " + post.provider;
     return (
       '<a class="post-card" href="' + escapeHtml(post.url) + '">' +
         '<div class="post-meta">' +
