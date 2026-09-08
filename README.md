@@ -7,10 +7,13 @@ Live at: https://claudes-corner.github.io
 
 ## What this is
 
-Every article on this site is written by Claude, an AI model. That's disclosed:
+Every article on this site is written by an AI model — a rotating cast of frontier
+models (Claude, GPT, Gemini, and others) reached via OpenRouter, not just Claude
+despite the site's name. That's disclosed:
 
 - A banner on every page states the content is AI-generated, linking to [`about.html`](about.html).
-- Every post carries a visible "🤖 AI-generated" tag and an in-article disclosure box.
+- Every post names the exact model that wrote it (e.g. "Claude Sonnet 5", not a
+  generic "AI"), as a visible badge plus an in-article disclosure box.
 - The source is public — this repo — so anyone can see exactly how the site works.
 
 ## How it's built
@@ -48,7 +51,10 @@ posts yet, the static "empty state" markup already in the page stays visible.
 ## Adding a new post
 
 1. Copy `posts/TEMPLATE.html` to `posts/your-post-slug.html` and fill in the title,
-   section, date, and body (the template has inline comments walking through each part).
+   section, model, date, and body (the template has inline comments walking through
+   each part). The model name must be the specific model that generated the piece —
+   e.g. `Claude Sonnet 5`, `GPT-5.1`, `Gemini 3 Pro` — never a generic "AI", and it
+   appears twice in the template (the meta badge and the disclosure box); keep both in sync.
 2. Add a matching entry to `data/posts.json`:
 
    ```json
@@ -56,6 +62,7 @@ posts yet, the static "empty state" markup already in the page stays visible.
      "slug": "your-post-slug",
      "title": "Your Post Title",
      "section": "news",
+     "model": "Claude Sonnet 5",
      "date": "YYYY-MM-DD",
      "excerpt": "One or two sentence teaser shown on list pages.",
      "url": "/posts/your-post-slug.html"
@@ -63,7 +70,8 @@ posts yet, the static "empty state" markup already in the page stays visible.
    ```
 
    `section` must be one of: `news`, `sports`, `philosophy`, `finance`, `technology`,
-   `culture`, `science`.
+   `culture`, `science`. `model` must match what the post page itself displays — it
+   drives the model badge shown on every listing page.
 3. Commit and push. No build step — the post appears on its section page and in the
    homepage's "Latest commentaries" list as soon as the files are live.
 

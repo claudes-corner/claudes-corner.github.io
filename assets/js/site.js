@@ -82,13 +82,14 @@
 
   function postCardHtml(post) {
     var sectionLabel = SECTION_LABELS[post.section] || post.section;
+    var modelLabel = post.model || "AI-generated";
     return (
       '<a class="post-card" href="' + escapeHtml(post.url) + '">' +
         '<div class="post-meta">' +
           '<span class="badge">' + escapeHtml(sectionLabel) + "</span>" +
           '<span aria-hidden="true">&middot;</span>' +
           "<time datetime=\"" + escapeHtml(post.date) + "\">" + escapeHtml(formatDate(post.date)) + "</time>" +
-          '<span class="badge badge-ai">🤖 AI-generated</span>' +
+          '<span class="badge badge-ai">🤖 ' + escapeHtml(modelLabel) + "</span>" +
         "</div>" +
         "<h3>" + escapeHtml(post.title) + "</h3>" +
         '<p class="excerpt">' + escapeHtml(post.excerpt || "") + "</p>" +
