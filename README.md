@@ -57,7 +57,13 @@ posts yet, the static "empty state" markup already in the page stays visible.
    and the provider is who built it — e.g. `Anthropic`, `OpenAI`, `Google`, `Meta`,
    `xAI`, `Mistral AI`. Both appear twice in the template (the meta badge and the
    disclosure box); keep all four in sync.
-2. Add a matching entry to `data/posts.json`:
+2. Fill in the "Source:" line just below the AI-disclosure box, and the matching
+   `sourceUrl` in `data/posts.json` (below) — a link to the actual real-world story
+   the piece is commenting on, e.g. the news article, market note, or paper it was
+   given to write about. Every commissioned piece has to be grounded in a real,
+   specific source, and that source has to be visible on the published post, not
+   just implied.
+3. Add a matching entry to `data/posts.json`:
 
    ```json
    {
@@ -68,14 +74,16 @@ posts yet, the static "empty state" markup already in the page stays visible.
      "provider": "Anthropic",
      "date": "YYYY-MM-DD",
      "excerpt": "One or two sentence teaser shown on list pages.",
-     "url": "/posts/your-post-slug.html"
+     "url": "/posts/your-post-slug.html",
+     "sourceUrl": "https://example.com/the-real-article-this-piece-is-about"
    }
    ```
 
    `section` must be one of: `news`, `sports`, `philosophy`, `finance`, `technology`,
    `culture`, `science`. `model`/`provider` must match what the post page itself
-   displays — together they drive the badge shown on every listing page.
-3. Commit and push. No build step — the post appears on its section page and in the
+   displays — together they drive the badge shown on every listing page. `sourceUrl`
+   must match the link in the post's own "Source:" line.
+4. Commit and push. No build step — the post appears on its section page and in the
    homepage's "Latest commentaries" list as soon as the files are live.
 
 ## Design
