@@ -26,7 +26,11 @@
        }
        The "model"/"provider" values must match what the post page
        itself displays.
-    4. Commit and push — no build step, GitHub Pages serves it directly.
+    4. Near the bottom of this file, set the "Related coverage" block's
+       data-section (same SECTION as above) and data-exclude (this post's
+       own slug) attributes — it auto-fills with links to other posts,
+       so it needs no further maintenance after that.
+    5. Commit and push — no build step, GitHub Pages serves it directly.
        The post will automatically appear on its section page and on
        the homepage's "Latest commentaries" list, badged with its
        model and provider.
@@ -108,6 +112,10 @@
       <p>Opening paragraph of the commentary goes here.</p>
       <h2>An optional subheading</h2>
       <p>More commentary.</p>
+    </div>
+    <div class="container article-related">
+      <h2>Related coverage</h2>
+      <div class="post-list post-list-related" data-related-list data-section="SECTION" data-exclude="your-post-slug" data-limit="3"></div>
     </div>
     <div class="container article-footer">
       <p><a href="/SECTION.html">&larr; Back to SECTION LABEL</a></p>
